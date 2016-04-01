@@ -282,8 +282,6 @@ on post-fs-data
     mkdir /data/data/media 0770 media media
 
     # Create PERFD deamon related dirs
-    mkdir /data/misc/perfd 0755 root system
-    chmod 2755 /data/misc/perfd
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
     rm /data/system/perfd/default_values
@@ -317,6 +315,12 @@ service iop /system/bin/iop
     user root
     group root
     writepid /dev/cpuset/system-background/tasks
+
+service perfd /system/vendor/bin/perfd
+   class main
+   user root
+   disabled
+   socket perfd seqpacket 0666 root system
 
 on property:persist.sys.ssr.restart_level=*
     start ssr_setup
