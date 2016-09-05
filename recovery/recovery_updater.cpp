@@ -160,21 +160,21 @@ Value * VerifyBasebandFn(const char *name, State *state, int argc, Expr *argv[])
 
     ret = get_baseband_version(current_baseband_version, BASEBAND_VER_BUF_LEN);
     if (ret) {
-        return ErrorAbort(state, "%s() failed to read current BASEBAND version: %d",
+        return ErrorAbort(state, kFreadFailure, "%s() failed to read current baseband version: %d",
                 name, ret);
     }
 
     for (i = 0; i < argc; i++) {
         baseband_string = Evaluate(state, argv[i]);
         if (baseband_string < 0) {
-            return ErrorAbort(state, "%s() error parsing arguments: %d",
+            return ErrorAbort(state, kArgsParsingFailure, "%s() error parsing arguments: %d",
                 name, baseband_string);
         }
 
         baseband_short_version = strtok(baseband_string, ":");
         baseband_version = strtok(NULL, ":");
 
-        uiPrintf(state, "Checking for BASEBAND version %s", baseband_short_version);
+        uiPrintf(state, "Checking for baseband version %s", baseband_short_version);
         if (strncmp(baseband_version, current_baseband_version + BASEBAND_VER_STR_START_LEN, strlen(baseband_version) - BASEBAND_VER_STR_START_LEN) == 0) {
             return StringValue(strdup("1"));
         }
