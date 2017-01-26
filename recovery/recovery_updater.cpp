@@ -31,13 +31,11 @@
 #define MAX(a, b) (((a) > (b)) ? (a) : (b))
 
 #define ALPHABET_LEN 256
-#define KB 1024
 
 #define BASEBAND_PART_PATH "/dev/block/bootdevice/by-name/modem"
 #define BASEBAND_VER_STR_START "NX510J_Z0_CN_LSZOO1JF11"
 #define BASEBAND_VER_STR_START_LEN 23
 #define BASEBAND_VER_BUF_LEN 255
-#define BASEBAND_SZ 80000 * KB    /* MMAP 80M of BASEBAND, BASEBAND partition is 80M */
 
 /* Boyer-Moore string search implementation from Wikipedia */
 
@@ -120,6 +118,7 @@ static char * bm_search(const char *str, size_t str_len, const char *pat,
 static int get_baseband_version(char *ver_str, size_t len) {
     int ret = 0;
     int fd;
+    int baseband_size;
     char *baseband_data = NULL;
     char *offset = NULL;
 
@@ -129,21 +128,27 @@ static int get_baseband_version(char *ver_str, size_t len) {
         goto err_ret;
     }
 
-    baseband_data = (char *) mmap(NULL, BASEBAND_SZ, PROT_READ, MAP_PRIVATE, fd, 0);
+    baseband_size = lseek64(fd, 0, SEEK_END);
+    if (baseband_size == -1) {
+        ret = errno;
+        goto err_fd_close;
+    }
+
+    baseband_data = (char *) mmap(NULL, baseband_size, PROT_READ, MAP_PRIVATE, fd, 0);
     if (baseband_data == (char *)-1) {
         ret = errno;
         goto err_fd_close;
     }
 
     /* Do Boyer-Moore search across BASEBAND data */
-    offset = bm_search(baseband_data, BASEBAND_SZ, BASEBAND_VER_STR_START, BASEBAND_VER_STR_START_LEN);
+    offset = bm_search(baseband_data, baseband_size, BASEBAND_VER_STR_START, BASEBAND_VER_STR_START_LEN);
     if (offset != NULL) {
         strncpy(ver_str, offset, len);
     } else {
         ret = -ENOENT;
     }
 
-    munmap(baseband_data, BASEBAND_SZ);
+    munmap(baseband_data, baseband_size);
 err_fd_close:
     close(fd);
 err_ret:
