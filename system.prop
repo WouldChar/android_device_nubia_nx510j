@@ -108,8 +108,5 @@ ro.telephony.default_cdma_sub=0
 # Sensors
 ro.qc.sdk.sensors.gestures=true
 
-# Storage
-ro.sys.sdcardfs=true
-
 # Enable Wifi calling
 persist.data.iwlan.enable=true
