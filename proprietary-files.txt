@@ -815,7 +815,6 @@ vendor/lib64/libqti-gt.so
 lib/libAlgorithm.so
 lib/libalRnB.so
 lib/libalSDE2.so
-lib/libaudio-resampler.so
 lib/libIndependenceUtil.so
 lib/libBuffer.so
 lib/libbuffer_manager.so
@@ -839,7 +838,6 @@ lib/libshims_ims.so
 lib64/libAlgorithm.so
 lib64/libalRnB.so
 lib64/libalSDE2.so
-lib64/libaudio-resampler.so
 lib64/libBuffer.so
 lib64/libbuffer_manager.so
 lib64/libBurstProcessJni.so
