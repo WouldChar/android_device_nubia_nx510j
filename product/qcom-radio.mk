@@ -14,6 +14,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=22,22 \
     persist.radio.multisim.config=dsds \
     persist.data.qmi.adb_logmask=0 \
+    persist.radio.primarycard=true \
     telephony.lteOnCdmaDevice=1 \
     ro.telephony.default_cdma_sub=0
 
