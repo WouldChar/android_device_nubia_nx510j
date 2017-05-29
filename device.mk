@@ -98,6 +98,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
 
+# Camera
+PRODUCT_PACKAGES += \
+    Snap
+
 # Display HAL
 PRODUCT_PACKAGES += \
     copybit.msm8994 \
@@ -111,10 +115,6 @@ PRODUCT_PACKAGES += \
 # Doze mode
 PRODUCT_PACKAGES += \
     NubiaDoze
-
-# Jelly
-PRODUCT_PACKAGES += \
-    Jelly
 
 # Gps
 PRODUCT_PACKAGES += \
