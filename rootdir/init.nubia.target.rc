@@ -29,7 +29,6 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
-
     export LD_SHIM_LIBS "/system/vendor/lib64/lib-imscamera.so|libshim_ims-camera.so:/system/vendor/lib/lib-imsvt.so|libshims_ims.so:/system/vendor/lib64/lib-imsvt.so|libshims_ims.so:/system/lib/libFNVfbEngineHAL.so|libshim_camera.so:/system/lib64/libFNVfbEngineLib.so|libshim_camera.so"
 
     write /sys/devices/soc.0/f98a4900.sdhci/mmc_host/mmc1/clkgate_delay 1
@@ -45,28 +44,14 @@ on boot
     chmod 0660 /dev/bcm2079x
     chown nfc nfc /dev/bcm2079x
 
-service zram-init /system/bin/sh /init.zram.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-
-#TP node start
-service tp-init /system/bin/sh /init.tp.sh
-    class main
-    user root
-    group root
-    oneshot
-# TP node end
-
 on post-fs-data
     # ADDED BY ZTEMT ZhuBing
     # add the sensor sysfs permission
-    #hall_device
+    # hall_device
     chown system system /sys/class/hall_device/hall_device/enable
     chmod 0644 /sys/class/hall_device/hall_device/enable
 
-    #proximity
+    # proximity
     mkdir /persist/proxdata 0775 system system
     chown system system /persist/proxdata
     chmod 0775 /persist/proxdata
@@ -121,7 +106,7 @@ on post-fs-data
     chmod 0644 /sys/class/proximity/proximity/prox_offset_cal_verify
     chmod 0644 /sys/class/proximity/proximity/prox_calibrate_verify
 
-    #light
+    # light
     chown system system /sys/class/light/light/enable
     chown system system /sys/class/light/light/delay
 
@@ -149,3 +134,20 @@ on post-fs-data
     mkdir /data/nfc
     mkdir /etc/param
     start nfc-default-sh
+
+# ztemt Disable SSR to SoC restart
+on property:persist.sys.ssr.restart_level=1
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level system
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level system
+
+# Enable SSR
+on property:persist.sys.ssr.restart_level=3
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level related
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level related
+
+on property:persist.sys.ap.restart_level=*
+    write /sys/module/msm_poweroff/parameters/download_mode ${persist.sys.ap.restart_level}

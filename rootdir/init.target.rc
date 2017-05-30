@@ -59,25 +59,13 @@ on post-fs-data
     mkdir /data/misc/dts 0770 media audio
 
 on boot
-    symlink /dev/block/platform/soc.0/f9824900.sdhci /dev/block/bootdevice
     start rmt_storage
     start rfs_access
-    write /sys/bus/i2c/devices/2-004a/update_fw 1
-    write /sys/bus/i2c/devices/2-004a/update_cfg 1
-    write /sys/bus/i2c/devices/2-0020/input/input0/update_fw 1
-# access permission for secure touch
-    chmod 0660 /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0020/input/input0/secure_touch_enable
-    chmod 0440 /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0020/input/input0/secure_touch
-    chmod 0660 /sys/devices/soc.0/f9924000.i2c/i2c-2/2-004a/secure_touch_enable
-    chmod 0440 /sys/devices/soc.0/f9924000.i2c/i2c-2/2-004a/secure_touch
-    chown system drmrpc /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0020/input/input0/secure_touch_enable
-    chown system drmrpc /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0020/input/input0/secure_touch
-    chown system drmrpc /sys/devices/soc.0/f9924000.i2c/i2c-2/2-004a/secure_touch_enable
-    chown system drmrpc /sys/devices/soc.0/f9924000.i2c/i2c-2/2-004a/secure_touch
+
     write /proc/sys/vm/dirty_ratio 5
     write /proc/sys/vm/dirty_background_ratio 1
 
-#start camera server as daemon
+# start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
@@ -85,17 +73,16 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     writepid /dev/cpuset/camera-daemon/tasks
 
 service qseecomd /system/bin/qseecomd
-   class core
-   user root
-   group root
-   writepid /dev/cpuset/system-background/tasks
-
+    class core
+    user root
+    group root
+    writepid /dev/cpuset/system-background/tasks
 
 service perfd /system/vendor/bin/perfd
-   class main
-   user root
-   disabled
-   socket perfd seqpacket 0666 root system
+    class main
+    user root
+    disabled
+    socket perfd seqpacket 0666 root system
 
 service per_mgr /system/bin/pm-service
     class core
@@ -110,6 +97,18 @@ service per_proxy /system/bin/pm-proxy
     writepid /dev/cpuset/system-background/tasks
     disabled
 
+service zram-init /system/bin/sh /init.zram.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+service tp-init /system/bin/sh /init.tp.sh
+    class main
+    user root
+    group root
+    oneshot
+
 on property:init.svc.per_mgr=running
     start per_proxy
 
@@ -117,30 +116,29 @@ on property:sys.shutdown.requested=*
     stop per_proxy
 
 service thermal-engine /system/vendor/bin/thermal-engine
-   class main
-   user root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
-   group root
-   writepid /dev/cpuset/system-background/tasks
-
+    class main
+    user root
+    socket thermal-send-client stream 0666 system system
+    socket thermal-recv-client stream 0660 system system
+    socket thermal-recv-passive-client stream 0666 system system
+    group root
+    writepid /dev/cpuset/system-background/tasks
 
 service time_daemon /system/bin/time_daemon
-   class late_start
-   user root
-   group root
+    class late_start
+    user root
+    group root
     writepid /dev/cpuset/system-background/tasks
 
 service adsprpcd /system/bin/adsprpcd
-   class main
-   user media
-   group media
+    class main
+    user media
+    group media
 
 service audiod /system/bin/audiod
-   class late_start
-   user system
-   group system
+    class late_start
+    user system
+    group system
 
 service imsqmidaemon /system/bin/imsqmidaemon
     class main
@@ -159,19 +157,19 @@ on property:sys.ims.QMI_DAEMON_STATUS=1
     start imsdatadaemon
 
 service ims_rtp_daemon /system/bin/ims_rtp_daemon
-   class main
-   user system
-   socket ims_rtpd stream 0660 system radio
-   group radio diag inet log
-   disabled
+    class main
+    user system
+    socket ims_rtpd stream 0660 system radio
+    group radio diag inet log
+    disabled
 
 on property:sys.ims.DATA_DAEMON_STATUS=1
     start ims_rtp_daemon
 
 service imscmservice /system/bin/imscmservice
-   class main
-   user system
-   group radio diag inet log
+    class main
+    user system
+    group radio diag inet log
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
