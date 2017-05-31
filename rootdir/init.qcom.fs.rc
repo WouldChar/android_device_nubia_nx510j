@@ -1,6 +1,4 @@
 on init
-    start qfintverify
-
     # Set permissions for securefs partition
     mkdir /securefs 0771 system system
 

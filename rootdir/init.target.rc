@@ -44,9 +44,6 @@ on fs
 
     mount_all fstab.qcom
 
-    # Threshold for cma page reclaim
-    write /proc/sys/vm/swap_thresh_cma_free_pages 7680
-
 on post-fs-data
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
