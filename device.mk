@@ -19,7 +19,7 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Call the proprietary setup
-$(call inherit-product-if-exists, vendor/nubia/nx510j/nx510j-vendor.mk)
+$(call inherit-product, vendor/nubia/nx510j/nx510j-vendor.mk)
 
 # Setup dalvik vm configs.
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
