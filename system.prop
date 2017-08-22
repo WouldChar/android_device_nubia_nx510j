@@ -75,6 +75,7 @@ mm.enable.smoothstreaming=true
 media.aac_51_output_enabled=true
 vidc.debug.level=1
 vidc.enc.dcvs.extra-buff-count=2
+persist.media.treble_omx=false
 
 # try not to use big cores during dexopt
 dalvik.vm.boot-dex2oat-threads=4
