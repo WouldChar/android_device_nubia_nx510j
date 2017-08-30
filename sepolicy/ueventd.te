@@ -1,0 +1,3 @@
+allow ueventd smd_device:chr_file { relabelto relabelfrom };
+allow ueventd hci_attach_dev:chr_file { relabelto relabelfrom };
+allow ueventd device:chr_file { relabelto relabelfrom };
