@@ -255,6 +255,8 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf \
+    wificond \
+    wifilogd \
     android.hardware.wifi@1.0-service
 
 PRODUCT_COPY_FILES += \
