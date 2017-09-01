@@ -1,3 +1,0 @@
-dontaudit dpmd self:capability sys_ptrace;
-allow dpmd mm-qcamerad:dir search;
-allow dpmd mm-qcamerad:file read;

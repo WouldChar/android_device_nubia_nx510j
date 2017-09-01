@@ -1,4 +1,0 @@
-allow init debugfs:dir mounton;
-allow init debugfs:file write;
-allow init proc_kernel_sched:file write;
-allow init proc_dirty_ratio:file write;
