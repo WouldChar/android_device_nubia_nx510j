@@ -116,10 +116,6 @@ PRODUCT_PACKAGES += \
     libqdMetaData \
     memtrack.msm8994
 
-# Doze mode
-PRODUCT_PACKAGES += \
-    NubiaDoze
-
 # Gps
 PRODUCT_PACKAGES += \
     gps.msm8994

@@ -94,13 +94,6 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 # Cpusets
 ENABLE_CPUSETS := true
 
-# CM Hardware
-BOARD_USES_CYANOGEN_HARDWARE := true
-BOARD_HARDWARE_CLASS += \
-    hardware/cyanogen/cmhw \
-    $(DEVICE_PATH)/cmhw
-TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
-
 # CNE and DPM
 TARGET_LDPRELOAD := libNimsWrap.so
 BOARD_USES_QCNE := true
