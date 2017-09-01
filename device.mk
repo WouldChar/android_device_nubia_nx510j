@@ -163,6 +163,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/qpnp_pon.kl:system/usr/keylayout/qpnp_pon.kl \
     $(LOCAL_PATH)/keylayout/Generic.kl:system/usr/keylayout/Generic.kl
 
+# Keymaster HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-impl
+
 # Media
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
@@ -228,6 +232,10 @@ PRODUCT_PACKAGES += \
     power.msm8994 \
     android.hardware.power@1.0-impl
 
+# RenderScript HAL
+PRODUCT_PACKAGES += \
+android.hardware.renderscript@1.0-impl
+
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.msm8994
@@ -239,13 +247,10 @@ PRODUCT_PACKAGES += \
 # WiFi
 PRODUCT_PACKAGES += \
     hostapd \
-    ipacm \
-    IPACM_cfg.xml \
     libwpa_client \
     wpa_supplicant \
     wpa_supplicant.conf \
     wificond \
-    wifilogd \
     android.hardware.wifi@1.0-service
 
 PRODUCT_COPY_FILES += \
