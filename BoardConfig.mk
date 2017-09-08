@@ -21,7 +21,7 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT := cortex-a53
 
 # Second architecture
 TARGET_2ND_ARCH := arm
@@ -52,9 +52,6 @@ BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 # Platform
 TARGET_BOARD_PLATFORM := msm8994
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno430
-
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
 # Audio
 AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
@@ -165,14 +162,6 @@ TARGET_PER_MGR_ENABLED := true
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
-# Recovery
-TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
-TARGET_RECOVERY_UI_LIB := librecovery_ui_msm
-TARGET_RECOVERY_UPDATER_LIBS := \
-    librecovery_updater_msm \
-    librecovery_updater_nx510j
-TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
-
 # Sensors
 USE_SENSOR_MULTI_HAL := true
 
@@ -195,10 +184,6 @@ WIFI_DRIVER_FW_PATH_AP           := "ap"
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME          := "wlan"
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
-
-CONFIG_EAP_PROXY := qmi
-CONFIG_EAP_PROXY_AKA_PRIME := true
-CONFIG_EAP_PROXY_MSM8994_TARGET := true
 
 # Enable dexpreopt to speed boot time
 ifeq ($(HOST_OS),linux)

@@ -22,10 +22,10 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 $(call inherit-product, vendor/nubia/nx510j/nx510j-vendor.mk)
 
 # Setup dalvik vm configs.
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Setup base hwui configs
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
+#$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -66,7 +66,6 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_PACKAGES += \
-    audiod \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing \
@@ -106,6 +105,10 @@ PRODUCT_PACKAGES += \
     camera.device@3.2-impl \
     android.hardware.camera.provider@2.4-impl \
 
+# Charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
 # Display HAL
 PRODUCT_PACKAGES += \
     copybit.msm8994 \
@@ -114,6 +117,7 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libqdutils \
     libqdMetaData \
+    libgenlock \
     memtrack.msm8994
 
 # Gps
@@ -230,7 +234,7 @@ PRODUCT_PACKAGES += \
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \
-android.hardware.renderscript@1.0-impl
+    android.hardware.renderscript@1.0-impl
 
 # Sensors
 PRODUCT_PACKAGES += \
