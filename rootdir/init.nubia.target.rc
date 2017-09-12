@@ -36,10 +36,6 @@ on init
     write /sys/kernel/rcu_expedited 1
 
 on boot
-    chown root system /sys/class/power_supply/battery/charging_enabled
-    chmod 0664 /sys/class/power_supply/battery/charging_enabled
-    restorecon /sys/class/power_supply/battery/charging_enabled
-
     # permissions for NFC
     chmod 0660 /dev/bcm2079x
     chown nfc nfc /dev/bcm2079x

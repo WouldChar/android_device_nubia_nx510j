@@ -146,7 +146,8 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     ueventd.qcom.rc \
     init.tp.sh \
-    init.qcom.bt.sh
+    init.qcom.bt.sh \
+    init.nx510j.power.sh
 
 # Keylayout
 PRODUCT_COPY_FILES += \

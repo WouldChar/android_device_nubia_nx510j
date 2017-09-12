@@ -36,8 +36,8 @@ on post-fs
     export LD_PRELOAD libNimsWrap.so
 
 on fs
-    wait /dev/block/platform/soc.0/f9824900.sdhci/mmcblk0
-    symlink /dev/block/platform/soc.0/f9824900.sdhci /dev/block/bootdevice
+    wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
 
     restorecon_recursive /persist
     mkdir /persist/data 0700 system system
@@ -61,6 +61,14 @@ on boot
 
     write /proc/sys/vm/dirty_ratio 5
     write /proc/sys/vm/dirty_background_ratio 1
+
+    # execute script to set initial CPU settings
+    # don't run as a service to avoid race conditions
+    exec - root root system -- /system/bin/init.nx510j.power.sh
+
+    # execute script to set TP nodes
+    # don't run as a service to avoid race conditions
+    exec - root root system -- /system/bin/init.tp.sh
 
 # start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
@@ -88,16 +96,10 @@ service per_proxy /system/bin/pm-proxy
     writepid /dev/cpuset/system-background/tasks
     disabled
 
-service zram-init /system/bin/sh /init.zram.sh
+service zram-init /system/bin/sh /etc/init.zram.sh
     class late_start
     user root
     disabled
-    oneshot
-
-service tp-init /system/bin/sh /init.tp.sh
-    class main
-    user root
-    group root
     oneshot
 
 on property:init.svc.per_mgr=running
