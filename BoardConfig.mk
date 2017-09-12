@@ -149,9 +149,6 @@ MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
-# Input
-PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
-
 # Keystore
 TARGET_PROVIDES_KEYMASTER := true
 
