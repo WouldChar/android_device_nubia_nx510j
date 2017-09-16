@@ -29,8 +29,6 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug mode=755
 
 on init
-    export LD_SHIM_LIBS "/system/vendor/lib64/lib-imscamera.so|libshim_ims-camera.so:/system/vendor/lib/lib-imsvt.so|libshims_ims.so:/system/vendor/lib64/lib-imsvt.so|libshims_ims.so:/system/lib/libFNVfbEngineHAL.so|libshim_camera.so:/system/lib64/libFNVfbEngineLib.so|libshim_camera.so"
-
     write /sys/devices/soc.0/f98a4900.sdhci/mmc_host/mmc1/clkgate_delay 1
     # Avoid long waits for rcu grace periods
     write /sys/kernel/rcu_expedited 1

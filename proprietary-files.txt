@@ -812,31 +812,6 @@ bin/cnss_diag
 
 # NubiaCamera from mokee
 -app/NubiaCamera/NubiaCamera.apk
-lib/libAlgorithm.so
-lib/libalRnB.so
-lib/libalSDE2.so
-lib/libavcodec.so
-lib/libavformat.so
-lib/libavutil.so
-lib/libBuffer.so
-lib/libbuffer_manager.so
-lib/libBurstProcessJni.so
-lib/libFNVfbEngineHAL.so
-lib/libIndependenceUtil.so
-lib/libmmcamera_nubiacustpro.so
-lib/libmorpho_panorama_gp.so
-lib/libmulti_exposure.so
-lib/libnubia_effect.so
-lib/libNubiaImageAlgorithm.so
-lib/libnubiajpeg.so
-lib/libNubiaxmptoolkit.so
-lib/libpanoramahelper.so
-lib/libproductinfo.so
-lib/libshim_camera.so
-lib/libshim_ims-camera.so
-lib/libshims_ims.so
-lib/libswresample.so
-lib/libswscale.so
 lib64/libAlgorithm.so
 lib64/libalRnB.so
 lib64/libalSDE2.so
@@ -851,15 +826,11 @@ lib64/libFNVfbEngineLib.so
 lib64/libIndependenceUtil.so
 lib64/libmorpho_panorama_gp.so
 lib64/libmulti_exposure.so
-lib64/libnubia_clone.so
 lib64/libnubia_delay_recorder.so
 lib64/libNubiaImageAlgorithm.so
 lib64/libnubiajpeg.so
 lib64/libNubiaxmptoolkit.so
 lib64/libpanoramahelper.so
 lib64/libproductinfo.so
-lib64/libshim_camera.so
-lib64/libshim_ims-camera.so
-lib64/libshims_ims.so
 lib64/libswresample.so
 lib64/libswscale.so
