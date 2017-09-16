@@ -60,8 +60,5 @@ fi
 setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT" false $clean_vendor
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
-if [ -n "$RADIO_SRC" ]; then
-    extract_firmware "$MY_DIR"/proprietary-firmware.txt "$RADIO_SRC" "$SECTION"
-fi
 
 "$MY_DIR"/setup-makefiles.sh
