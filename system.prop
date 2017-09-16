@@ -38,7 +38,6 @@ qcom.bluetooth.soc=rome
 # Camera
 media.stagefright.legacyencoder=true
 media.stagefright.less-secure=true
-media.camera.ts.monotonic=0
 persist.camera.HAL3.enabled=1
 persist.camera.cpp.duplication=false
 ro.qc.sdk.camera.facialproc=false
