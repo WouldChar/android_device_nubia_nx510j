@@ -16,7 +16,7 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8994
 TARGET_NO_BOOTLOADER := true
 
 # Crypto
-#TARGET_HW_DISK_ENCRYPTION := true
+TARGET_HW_DISK_ENCRYPTION := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8994
@@ -28,7 +28,7 @@ BOARD_KERNEL_PAGESIZE 	 := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET     := 0x01000000
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-3
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-3 androidboot.selinux=permissive
 TARGET_PREBUILT_KERNEL := device/nubia/nx510j/prebuilt/Image.gz-dtb
 
 # Partitions
@@ -57,6 +57,6 @@ RECOVERY_SDCARD_ON_DATA := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_EXTRA_LANGUAGES := true
-#TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO := true
 TW_DEFAULT_BRIGHTNESS := 80
 TW_INCLUDE_NTFS_3G := true
