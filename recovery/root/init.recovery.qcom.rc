@@ -1,10 +1,10 @@
 on init
     # Enable DTW gesture & enable keypad
     write /sys/bus/i2c/devices/2-005d/wakeup_gesture 1
-    write system /sys/bus/i2c/devices/2-005d/keypad_enable 1
+    write /sys/bus/i2c/devices/2-005d/keypad_enable 1
     write /sys/bus/i2c/devices/2-0024/hw_reset 1
     write /sys/bus/i2c/devices/2-0024/wakeup_gesture 1
-    write system /sys/bus/i2c/devices/2-0024/keypad_enable 1
+    write /sys/bus/i2c/devices/2-0024/keypad_enable 1
 
 on boot
     write /sys/devices/system/cpu/cpu4/online 0
