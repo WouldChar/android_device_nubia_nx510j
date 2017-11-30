@@ -47,7 +47,6 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0
 TARGET_KERNEL_SOURCE := kernel/nubia/msm8994
 TARGET_KERNEL_CONFIG := lineageos_nx510j_defconfig
 TARGET_USES_64_BIT_BINDER := true
-TARGET_KERNEL_APPEND_DTB := true
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 
 # Platform
